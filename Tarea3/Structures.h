@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <cstdio>
+#include <fstream>
 using namespace std;
 
 class AbbNode
@@ -38,6 +39,7 @@ public:
 	void deleteNode(string data) { this->root = deleteNode(data,this->root); }
 	void showInorder() { if (this->root == nullptr) { cout << "Empty Tree" << endl; } else { inorder(this->root); cout << endl; }}
 	void inorder(AbbNode* currentRoot);
+	void graphTree(string nameFile);
 };
 
 void AbbTree::insert(string data)
@@ -158,4 +160,21 @@ AbbNode* AbbTree::changeToGreaterFromSmallers(AbbNode* currentRoot)
 		previousNode->rightNode = currentNode->leftNode;
 	}
 	return currentNode;
+}
+
+void AbbTree::graphTree(string nameFile)
+{
+
+	ofstream txtFile;
+	txtFile.open(nameFile+".txt");
+
+	txtFile << "digraph matriz{" << endl;
+	txtFile << "rankdir = TB;" << endl;
+	txtFile << "node [shape = circle]" << endl;
+
+	txtFile << "}" << endl;
+	txtFile.close();
+
+	string strSystem = "\"dot -Tpng " + nameFile +".txt"+ " -o"+nameFile+".png";
+	system(strSystem);
 }
