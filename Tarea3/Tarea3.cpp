@@ -18,33 +18,21 @@ int main()
 	
 	cout << endl;
 
-	cout << "Insert Kraken" << endl;
-	searchTree->insert("kraken");
+	cout << "Insert luigi" << endl;
+	searchTree->insert("luigi");
 
 	cout << endl;
 
 	cout << "print in order" << endl;
 	searchTree->showInorder();
 
-	cout << "Insert kraken,dina,apple,era,zira,homero,moe,bart" << endl;
-	searchTree->insert("kraken");
-	searchTree->insert("dina");
-	searchTree->insert("apple");
-	searchTree->insert("era");
-	searchTree->insert("zira");
-	searchTree->insert("homero");
-	searchTree->insert("moe");
-	searchTree->insert("bart");
-
-	cout << endl;
-
-	cout << "print in order" << endl;
-	searchTree->showInorder();
-
-	cout << endl;
-
-	/*cout << "delete moe" << endl;
-	searchTree->deleteNode("moe");
+	cout << "Insert luigi,hammer,mario,peach,pow,fermim" << endl;
+	searchTree->insert("luigi");
+	searchTree->insert("hammer");
+	searchTree->insert("mario");
+	searchTree->insert("peach");
+	searchTree->insert("pow");
+	searchTree->insert("fermim");
 
 	cout << endl;
 
@@ -53,23 +41,60 @@ int main()
 
 	cout << endl;
 
-	cout << "delete homero" << endl;
-	searchTree->deleteNode("homero");
-
-	cout << endl;
-
-	cout << "print in order" << endl;
-	searchTree->showInorder();
-	*/
-
-	cout << "delete kraken" << endl;
-	searchTree->deleteNode("kraken");
+	cout << "delete peach" << endl;
+	searchTree->deleteNode("peach");
 
 	cout << endl;
 
 	cout << "print in order" << endl;
 	searchTree->showInorder();
 
+	cout << endl;
+
+	cout << "insert shy_guy,edd" << endl;
+	searchTree->insert("shy_guy");
+
+	cout << endl;
+
+	cout << "print in order" << endl;
+	searchTree->showInorder();
+	
+
+	cout << "delete pow" << endl;
+	searchTree->deleteNode("pow");
+
+	cout << endl;
+
+	cout << "print in order" << endl;
+	searchTree->showInorder();
+
+	cout << "insert Boo,Kamek, star, whomp" << endl;
+	searchTree->insert("Boo");
+	searchTree->insert("Kamek");
+	searchTree->insert("star");
+	searchTree->insert("whomp");
+	cout << endl;
+
+	cout << "print in order" << endl;
+	searchTree->showInorder();
+
+	cout << "delete shy_guy" << endl;
+	searchTree->deleteNode("shy_guy");
+
+	cout << endl;
+
+	cout << "print in order" << endl;
+	searchTree->showInorder();
+
+	cout << endl;
+
+	cout << "delete mario" << endl;
+	searchTree->deleteNode("mario");
+
+	cout << endl;
+
+	cout << "print in order" << endl;
+	searchTree->showInorder();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
