@@ -42,6 +42,93 @@ public:
 	void graphTree(string nameFile);
 };
 
+class Node {
+public:
+	Node(AbbNode* data) 
+	{ 
+		this->data = data;
+		this->next = nullptr;
+		this->previous = nullptr;
+	}
+	AbbNode* data;
+	Node* previous;
+	Node* next;
+};
+
+class Queue {
+public:
+	Queue() 
+	{
+		this->front = nullptr;
+		this->rear = nullptr;
+	}
+	Node* front;
+	Node* rear;
+	void enqueue(AbbNode* data);
+	Node* dequeue();
+	bool isEmpty();
+	void emptyQueue();
+};
+
+
+void Queue::enqueue(AbbNode* data)
+{
+	Node* newNode = new Node(data);
+
+	if (this->rear == nullptr)
+	{
+		this->rear = this->front = newNode;
+	}
+	else
+	{
+		this->rear->next = newNode;
+		this->rear = newNode;
+	}
+}
+
+Node* Queue::dequeue()
+{
+	Node* temp = this->front;
+
+	if (this->isEmpty())
+	{
+		cout << "The Queue is Emtpy,err Queue underflow" << endl;
+	}
+	else
+	{
+		if (this->front == this->rear)
+		{
+			this->rear = this->front = this->front->next;
+		}
+		else
+		{
+			this->front = this->front->next;
+		}
+	}
+	return temp;
+}
+
+bool Queue::isEmpty()
+{
+
+	if (this->rear == nullptr and this->front == nullptr)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void Queue::emptyQueue()
+{
+	while (this->isEmpty()!= true)
+	{
+		this->dequeue();
+	}
+}
+
 void AbbTree::insert(string data)
 {
 	insert(data,this->root);
@@ -164,17 +251,77 @@ AbbNode* AbbTree::changeToGreaterFromSmallers(AbbNode* currentRoot)
 
 void AbbTree::graphTree(string nameFile)
 {
+	Queue* breadthQueue = new Queue();
+	string auxTxtFile = "";
 
 	ofstream txtFile;
 	txtFile.open(nameFile+".txt");
 
-	txtFile << "digraph matriz{" << endl;
-	txtFile << "rankdir = TB;" << endl;
-	txtFile << "node [shape = circle]" << endl;
+	txtFile << "digraph tree{" << endl;
+	txtFile << endl;
 
+	txtFile << "rankdir = TB;" << endl;
+	txtFile << "node [shape = record]" << endl;
+	txtFile << "splines = polyline" << endl;
+	txtFile << endl;
+
+	breadthQueue->enqueue(this->root);
+
+	while (breadthQueue->isEmpty() == false)
+	{
+		Node* currentNode = breadthQueue->dequeue();
+
+		auxTxtFile += currentNode->data->data+"[label = \"<l>|";
+		auxTxtFile +="<d>"+currentNode->data->data+"|<r>\"]\n";
+
+		if (currentNode->data->leftNode != nullptr)
+		{
+			breadthQueue->enqueue(currentNode->data->leftNode);
+		}
+
+		if (currentNode->data->rightNode != nullptr)
+		{
+			breadthQueue->enqueue(currentNode->data->rightNode);
+		}
+	}
+
+	breadthQueue->emptyQueue();
+
+	breadthQueue->enqueue(this->root);
+
+	txtFile << auxTxtFile;
+	txtFile << endl;
+	auxTxtFile = "";
+
+	while (breadthQueue->isEmpty() == false)
+	{
+		Node* currentNode = breadthQueue->dequeue();
+
+		if (currentNode->data->leftNode != nullptr)
+		{
+			breadthQueue->enqueue(currentNode->data->leftNode);
+
+			auxTxtFile += currentNode->data->data + ":l";
+			auxTxtFile += "->";
+			auxTxtFile += currentNode->data->leftNode->data + "\n";
+		}
+
+		if (currentNode->data->rightNode != nullptr)
+		{
+			breadthQueue->enqueue(currentNode->data->rightNode);
+
+			auxTxtFile += currentNode->data->data + ":r";
+			auxTxtFile += "->";
+			auxTxtFile += currentNode->data->rightNode->data + "\n";
+		}
+	}
+
+	txtFile << auxTxtFile;
+	breadthQueue->emptyQueue();
+	txtFile << endl;
 	txtFile << "}" << endl;
 	txtFile.close();
 
 	string strSystem = "\"dot -Tpng " + nameFile +".txt"+ " -o"+nameFile+".png";
-	system(strSystem);
+	system(strSystem.c_str());
 }

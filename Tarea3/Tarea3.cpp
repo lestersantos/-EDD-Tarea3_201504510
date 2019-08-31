@@ -34,6 +34,7 @@ int main()
 	searchTree->insert("pow");
 	searchTree->insert("fermim");
 
+	searchTree->graphTree("instruction1");
 	cout << endl;
 
 	cout << "print in order" << endl;
@@ -43,7 +44,7 @@ int main()
 
 	cout << "delete peach" << endl;
 	searchTree->deleteNode("peach");
-
+	searchTree->graphTree("instruction2");
 	cout << endl;
 
 	cout << "print in order" << endl;
@@ -53,7 +54,8 @@ int main()
 
 	cout << "insert shy_guy,edd" << endl;
 	searchTree->insert("shy_guy");
-
+	searchTree->insert("edd");
+	searchTree->graphTree("instruction3");
 	cout << endl;
 
 	cout << "print in order" << endl;
@@ -62,7 +64,7 @@ int main()
 
 	cout << "delete pow" << endl;
 	searchTree->deleteNode("pow");
-
+	searchTree->graphTree("instruction4");
 	cout << endl;
 
 	cout << "print in order" << endl;
@@ -73,6 +75,7 @@ int main()
 	searchTree->insert("Kamek");
 	searchTree->insert("star");
 	searchTree->insert("whomp");
+	searchTree->graphTree("instruction5");
 	cout << endl;
 
 	cout << "print in order" << endl;
@@ -80,7 +83,7 @@ int main()
 
 	cout << "delete shy_guy" << endl;
 	searchTree->deleteNode("shy_guy");
-
+	searchTree->graphTree("instruction6");
 	cout << endl;
 
 	cout << "print in order" << endl;
@@ -90,7 +93,7 @@ int main()
 
 	cout << "delete mario" << endl;
 	searchTree->deleteNode("mario");
-
+	searchTree->graphTree("instruction7");
 	cout << endl;
 
 	cout << "print in order" << endl;
